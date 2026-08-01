@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robiyana Malinga Logistics | Control Suite & Tracking Hub</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --primary: #001A41;
+            --blue: #0047AB;
+            --accent: #007BFF;
+            --light: #F4F7F6;
+            --dark: #333333;
+            --white: #FFFFFF;
+            --green: #28A745;
+            --amber: #FFC107;
+            --red: #DC3545;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        
+        /* Header & Nav */
+        header { background: var(--white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo h2 { color: var(--primary); text-transform: uppercase; font-weight: 800; font-size: 1.4rem; line-height: 1; }
+        .logo span { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; font-weight: bold; }
+        .nav-tabs { display: flex; gap: 1.5rem; list-style: none; }
+        .tab-btn { background: none; border: none; padding: 0.5rem 1rem; color: var(--primary); font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.3s; font-size: 0.95rem; }
+        .tab-btn.active { color: var(--accent); border-color: var(--accent); }
+        .cta-quote { background: var(--accent); color: var(--white); padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .cta-quote:hover { background: var(--blue); }
+
+        /* App Sections */
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .app-card { background: var(--white); padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .hidden { display: none !important; }
+        h3 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        h5 { margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--primary); font-size: 1.1rem; }
+        
+        /* Forms & Interactive Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary); font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #CCC; border-radius: 4px; outline-color: var(--accent); font-size: 1rem; }
+        .btn { background: var(--primary); color: var(--white); border: none; padding: 0.75rem 1.5rem; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; }
+        .btn:hover { background: var(--blue); }
+        .btn-accent { background: var(--accent); }
+        .btn-accent:hover { background: var(--blue); }
+
+        /* Tracking Timeline UI */
+        .timeline { margin-top: 2rem; position: relative; padding-left: 30px; border-left: 3px solid #E0E0E0; }
+        .timeline-item { position: relative; margin-bottom: 2rem; }
+        .timeline-item::before { content: ''; width: 14px; height: 14px; background: var(--blue); border: 3px solid var(--white); border-radius: 50%; position: absolute; left: -39px; top: 4px; box-shadow: 0 0 0 3px #E0E0E0; }
+        .timeline-item.active::before { background: var(--green); box-shadow: 0 0 0 5px rgba(40,167,69,0.2); }
+        .time { font-size: 0.8rem; color: #777; font-weight: bold; }
+        .status-title { font-weight: bold; color: var(--primary); font-size: 1.05rem; }
+        .status-desc { font-size: 0.9rem; color: #555; }
+        
+        /* Metric Badges */
+        .telemetry-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+        .badge { padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+        .badge-info { background: #E3F2FD; color: #0D47A1; }
+        .badge-success { background: #E8F5E9; color: #1B5E20; }
+        .badge-danger { background: #FFEBEE; color: #B71C1C; }
+
+        /* Tables for Admin Suite */
+        table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #E0E0E0; font-size: 0.9rem; }
+        th { background: var(--primary); color: var(--white); font-weight: 600; }
+        tr:hover { background: #FDFDFD; }
+
+        /* Footer Info */
+        footer { background: var(--primary); color: var(--white); padding: 2rem 5%; text-align: center; margin-top: 4rem; font-size: 0.85rem; }
+        .compliance-tags { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; color: #AAA; font-weight: bold; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h2>Robiyana Malinga</h2>
+            <span>Logistics &bull; Suite</span>
+        </div>
+        <nav>
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTab('track-hub')"><i class="fa-solid fa-magnifying-glass-location"></i> Customer Hub</button>
+                <button class="tab-btn" onclick="switchTab('quote-hub')"><i class="fa-solid fa-calculator"></i> Corridor Pricing</button>
+                <button class="tab-btn" onclick="switchTab('admin-hub')"><i class="fa-solid fa-lock"></i> Operational Deck</button>
+            </div>
+        </nav>
+        <a href="#quote-hub" class="cta-quote" onclick="switchTab('quote-hub')">Instant Matrix</a>
+    </header>
+
+    <div class="container">
+        
+        <!-- CUSTOMER HUB SECTION -->
+        <div id="track-hub" class="tab-pane app-card">
+            <h3><i class="fa-solid fa-route" style="color: var(--accent);"></i> Real-Time Waybill Consignment Tracker</h3>
+            <p style="margin-bottom: 1.5rem; color: #555;">Enter your unique RML tracking identification code below to evaluate physical location metrics, clearance thresholds, and live cold-chain metrics.</p>
+            <div style="display: flex; gap: 10px; max-width: 600px; margin-bottom: 2rem;">
+                <input type="text" id="cust-waybill-search" placeholder="e.g. RML-2026-9842" style="padding: 0.75rem; border: 2px solid var(--primary); border-radius: 4px; flex: 1; font-size: 1.1rem; font-weight: 600; text-transform: uppercase;">
+                <button class="btn btn-accent" onclick="executeCustomerLookup()"><i class="fa-solid fa-satellite-dish"></i> Locate Cargo</button>
+            </div>
+            
+            <div id="customer-tracking-output" class="hidden">
+                <div style="background: #EBF3FF; padding: 1.5rem; border-radius: 6px; border-left: 5px solid var(--accent); margin-bottom: 1.5rem;">
+                    <h4 id="out-wb-id" style="color: var(--primary); font-size: 1.2rem; margin-bottom: 0.5rem;">WAYBILL: -</h4>
+                    <div class="telemetry-row">
+                        <span id="out-badge-route" class="badge badge-info"><i class="fa-solid fa-map-pin"></i> Route: -</span>
+                        <span id="out-badge-cargo" class="badge badge-info"><i class="fa-solid fa-box"></i> Type: -</span>
+                        <span id="out-badge-temp" class="badge badge-success"><i class="fa-solid fa-temperature-three-quarters"></i> Temp: Ambient</span>
+                    </div>
+                </div>
+                <h5>Consignment Milestones</h5>
+                <div id="customer-timeline" class="timeline"></div>
+            </div>
+            <div id="customer-tracking-error" class="hidden" style="color: var(--red); font-weight: bold; background: #FFEBEE; padding: 1rem; border-radius: 4px;">
+                <i class="fa-solid fa-triangle-exclamation"></i> Identified Waybill code not found on live networks. Verify format sequence.
+            </div>
+        </div>
+
+        <!-- CORRIDOR PRICING MATRIX -->
+        <div id="quote-hub" class="tab-pane app-card hidden">
+            <h3><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent);"></i> Intra-South Africa Pricing & Mileage Calculator</h3>
+            <div class="grid-2">
+                <div>
+                    <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0;">
+                        <div class="form-group">
+                            <label for="quote-origin-prov">Origin Province</label>
+                            <select id="quote-origin-prov" onchange="populateTowns('quote-origin-prov', 'quote-origin-town'); calculateMatrixQuote();">
+                                <option value="Gauteng">Gauteng</option>
+                                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                <option value="Western Cape">Western Cape</option>
+                                <option value="Eastern Cape">Eastern Cape</option>
+                                <option value="Limpopo">Limpopo</option>
+                                <option value="Mpumalanga">Mpumalanga</option>
+                                <option value="Free State">Free State</option>
+                                <option value="North West">North West</option>
+                                <option value="Northern Cape">Northern Cape</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quote-origin-town">Origin City/Town</label>
